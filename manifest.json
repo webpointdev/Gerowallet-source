@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "name": "GeroWallet",
+  "short_name": "GeroWallet",
+  "version": "1.8.11",
+  "description": "Your Master Key to DeFi",
+  "icons": {
+    "16": "./assets/img/logo16.png",
+    "48": "./assets/img/logo48.png",
+    "128": "./assets/img/logo128.png"
+  },
+  "browser_action": {
+    "default_popup": "index.html?#/popup",
+    "default_icon": {
+      "16": "./assets/img/logo16.png",
+      "48": "./assets/img/logo48.png",
+      "128": "./assets/img/logo128.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": ["tabs", "clipboardRead", "chrome://favicon/"],
+  "web_accessible_resources": ["inject.js"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://ada.muesliswap.com/*",
+        "https://cardahub.io/*",
+        "https://app.meowswap.fi/*",
+        "https://www.jpg.store/*",
+        "https://www.lilgoats.io/*",
+        "https://canucks-publishing.com/*",
+        "https://payment.nft-maker.io/*",
+        "https://www.gada.finance/*",
+        "http://localhost:3000/*"
+      ],
+      "js": ["contentPage.js"],
+      "all_frames": true
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'wasm-eval'; object-src 'self'"
+}
